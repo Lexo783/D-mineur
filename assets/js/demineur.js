@@ -61,14 +61,31 @@ class Case {
     }
 }
 
-function main() {
+var setTime = 0;
+var timeStart=0;
+
+function affichage(time){
+    var time = new Date(Date.now() - timeStart);
+    //var h = time.getHours() - 1;
+    var m = time.getMinutes();
+    var s = time.getSeconds();
+    //document.getElementById('chronometre').textContent = (h + "").padStart(2, "0") + ":" + (m+ "").padStart(2, "0") + ":" + (s + "").padStart(2, "0");
+    document.getElementById('timer').textContent = (m+ "").padStart(2, "0") + ":" + (s + "").padStart(2, "0");
+}
+function Chrono(){
+    affichage(new Date(Date.now() - timeStart));
+}
+
+function start() {
+    timeStart = Date.now();
+    setTime=setInterval(Chrono, 50);
+
     var game = new Game("easy");
-    
     game.create();
     console.log('====================================');
     console.log(game.lines);
     console.log('====================================');
-    //createplateau(game.size);
-}
 
-main();
+    document.getElementById('timer').style.display = 'inline-block';
+    document.getElementById('bombe').style.display = 'inline-block';
+}

@@ -9,129 +9,31 @@
          <header id="header">
             <h1>Démineur</h1>
             <nav>
-                    <ul>
-                        <li><a href="#">Débutant</a></li>
-                        <li><a href="#">Intermédiare</a></li>
-                        <li><a href="#">Expert</a></li>
-                    </ul>
-                </nav>
+                <ul>
+                    <li><a href="#">Débutant</a></li>
+                    <li><a href="#">Moyen</a></li>
+                    <li><a href="#">Intermédiare</a></li>
+                    <li><a href="#">Expert</a></li>
+                </ul>
+            </nav>
          </header>
          <div>
             <section id="section">
                 <div id="stats">
-                    <span id="bombe">10</span>
-                    <span class="timer" id="timer">0</span>
+                    <span id="bombe">Bombes : 10</span>
+                    <span id="timer">00:00</span>
                 </div>
                 <div class="demineurContainer">
                     <div id="demineur" class="demineur-background-level-1">
                         <div class="demineur-play">
-                            <table class="grille">
-                                <tbody>
-                                    <tr class="row">
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                    </tr>
-                                    <tr class="row">
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                    </tr>
-                                    <tr class="row">
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                    </tr>
-                                        <tr class="row">
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        </tr>
-                                    <tr class="row">
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                    </tr>
-                                    <tr class="row">
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                    </tr>
-                                    <tr class="row">
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                    </tr>
-                                    <tr class="row">
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                    </tr>
-                                    <tr class="row">
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                        <td class="unknow"></td>
-                                    </tr>
+                            <table >
+                                <tbody class="grille">
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-                <input type="button" id="start" onClick="start();" value="start"/>
+                <input type="button" id="start" onClick="start()" value="start"/>
            <h3>Comment jouer au démineur ?</h3>
            <p>Le but du jeu est de découvrir toutes les cases vides sans faire exploser les bombes.</p> 
            <p>Le clic gauche permet de libérer une case et le clic droit permet de placer un drapeau.</p> 
@@ -144,5 +46,5 @@
                 <p>Tous Droits réservés 2020</p>
          </footer>
      </body>
-     <script type="text/javascript" src="index.js"></script>
+     <script type="text/javascript" src="assets/js/demineur.js"></script>
 </html>
