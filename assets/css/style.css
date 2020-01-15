@@ -86,3 +86,54 @@ section p{
     text-transform: uppercase;
     align-items: center;
 }
+.demineurContainer{
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    /*width: 515px;
+    height: 281px*/
+}
+#demineur{
+    height: 281px; 
+    display: flex;
+    background-color: rgb(255, 255, 255);
+}
+
+#stats {
+    width: 50%;
+    margin: 0 auto;
+}
+#bombe, #timer{
+    display: inline-block;
+    height: 20px;
+    color: green;
+    font-family: cursive;
+    font-size: xx-large;
+}
+#timer{
+    float:right;
+}
+.unknow{
+
+
+
+    width: 20px;
+    height: 20px;
+
+    background-image: url('../capture/normal.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    border-collapse: collapse;
+}
+.demineur-play{
+    height: 218px;
+    width: 100%;
+    text-align: center;
+}
+.grille{
+    display: inline-block;
+    margin: 0 auto;
+}
+
