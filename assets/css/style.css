@@ -87,7 +87,7 @@ section p{
     color: black
 }
 
-#start{
+#btnStart{
     color: white;
     background: #da3131;
     display: flex;
@@ -99,39 +99,44 @@ section p{
     align-items: center;
 }
 
-.demineurContainer{
-    margin-right: auto;
-    margin-left: auto;
-    padding: 20px;
-    /*width: 515px;
-    height: 281px*/
-}
-
-#demineur{
-    height: 281px; 
-    display: flex;
-    background-color: rgb(255, 255, 255);
-}
-
 #stats {
     width: 50%;
     margin: auto;
-    padding: 20px;;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-self: center;
 }
 
-#bombe, #timer{
-    display: none;
+#stats span {
+    display: block;
     height: 20px;
-    color: green;
+    color: rgb(206, 6, 43);
     font-family: cursive;
     font-size: xx-large;
 }
 
-#timer{
-    float:right;
+#demineurContainer{
+    padding: 20px;
 }
 
-.unknow{
+#demineur {
+    display: flex;
+    background-color: rgb(255, 255, 255);
+}
+
+#demineur-play{
+    width: 100%;
+    text-align: center;
+}
+
+#grille{
+    display: inline-block;
+    margin: auto;
+}
+
+.case{
     width: 20px;
     height: 20px;
 
@@ -142,13 +147,3 @@ section p{
     border-collapse: collapse;
 }
 
-.demineur-play{
-    height: 218px;
-    width: 100%;
-    text-align: center;
-}
-
-.grille{
-    display: inline-block;
-    margin: auto;
-}

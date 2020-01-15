@@ -6,45 +6,49 @@
         <title>Démineur</title>
      </head>
      <body>
-         <header id="header">
+        <header id="header">
             <h1>Démineur</h1>
-            <nav>
-                <ul>
-                    <li><a href="#">Débutant</a></li>
-                    <li><a href="#">Moyen</a></li>
-                    <li><a href="#">Intermédiare</a></li>
-                    <li><a href="#">Expert</a></li>
-                </ul>
-            </nav>
-         </header>
-         <div>
+        </header>
+        <div>
             <section id="section">
                 <div id="stats">
-                    <span id="bombe">Bombes : 10</span>
-                    <span id="timer">00:00</span>
+                    <span id="bombe"></span>
+                    <span id="selectLevel">
+                        <form>
+                            <select id="selectorLevel" required>
+                                <option value="Facile">Facile</option>
+                                <option value="Moyen">Moyen</option>
+                                <option value="Difficile">Difficile</option>
+                                <option value="Hardcore">Hardcore</option>
+                            </select>
+                        </form>
+                    </span>
+                    <span id="level"></span>
+                    <span id="timer"></span>
                 </div>
-                <div class="demineurContainer">
-                    <div id="demineur" class="demineur-background-level-1">
-                        <div class="demineur-play">
+                <div id="demineurContainer">
+                    <div id="demineur">
+                        <div id="demineur-play">
                             <table >
-                                <tbody class="grille">
+                                <tbody id="grille">
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-                <input type="button" id="start" onClick="start()" value="start"/>
-           <h3>Comment jouer au démineur ?</h3>
-           <p>Le but du jeu est de découvrir toutes les cases vides sans faire exploser les bombes.</p> 
-           <p>Le clic gauche permet de libérer une case et le clic droit permet de placer un drapeau.</p> 
-           <p>Le chiffre qui s'affiche sur une case permet de connaître le nombre de bombes sur un 
-                côté adjacent, en haut, en bas, à gauche, à droite et en diagonale.</p>
-                
+                <input type="button" id="btnStart" value="Start"/>
+                <h3>Comment jouer au démineur ?</h3>
+                <p>Le but du jeu est de découvrir toutes les cases vides sans faire exploser les bombes.</p> 
+                <p>Le clic gauche permet de libérer une case et le clic droit permet de placer un drapeau.</p> 
+                <p>
+                    Le chiffre qui s'affiche sur une case permet de connaître le nombre de bombes sur un 
+                    côté adjacent, en haut, en bas, à gauche, à droite et en diagonale.
+                </p>
             </section>
-         </div>
-         <footer id="footer">
-                <p>Tous Droits réservés 2020</p>
-         </footer>
+        </div>
+        <footer id="footer">
+            <p>Tous Droits réservés 2020</p>
+        </footer>
      </body>
      <script type="text/javascript" src="assets/js/demineur.js"></script>
 </html>
