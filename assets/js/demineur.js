@@ -28,6 +28,23 @@ class Game {
             this.lines.push(new Array(this.size));
         }
     }
+    incremente(x, y)
+    {
+        for (let i = -1; i < 2; i++)
+        {
+            for (let j = -1; j < 2; j++)
+            {
+                if(x + j === -1 || y + i === -1 || x + j === this.size || y + i === this.size)
+                {
+                    continue;
+                }
+                if(this.lines[y+i][x+j].value !== 9)
+                {
+                    this.lines[y+i][x+j].value++;
+                }
+            }
+        }
+    }
 
     create(){
         var coordonates = [];
@@ -44,11 +61,37 @@ class Game {
             // coordonate => String : "x:y"
             this.lines[coordonate.split(':')[0]][coordonate.split(':')[1]].value = 9;
         }
+        for (let row = 0; row < this.size; row++)
+        {
+            for (let column = 0; column < this.size; column++)
+            {
+                if(this.lines[row][column].value === 9)
+                {
+                    this.incremente(row, column);
+                }
+            }
+        }
+        this.seeMybiutifulLog();
     }
 
-    randomInt(max) {
+    seeMybiutifulLog()
+    {
+        for (let i = 0; i < this.lines.length; i++)
+        {
+            var t = [];
+            for (let j = 0; j < this.lines.length; j++)
+            {
+                t.push(this.lines[i][j].value);
+            }
+            console.log(t);
+        }
+    }
+
+    randomInt(max) 
+    {
         return Math.floor(Math.random() * max);
     }
+
 }
 
 class Case {
@@ -112,6 +155,7 @@ function start() {
         document.getElementById('size').textContent = "Taille : " + game.size;
         timeStart = Date.now();
         setTime=setInterval(Chrono, 50);
+        //game.seeMybiutifulLog();
     }
     else {
         document.getElementById("selectLevel").style.display = "block";
