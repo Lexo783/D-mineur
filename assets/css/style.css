@@ -80,8 +80,11 @@ h3{
     color: rgb(206, 6, 43);
     text-align: center;
 }
+main{
+    padding: 0 10%;
+}
 
-section p{
+main p{
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     color: black
@@ -119,16 +122,14 @@ section p{
 
 #demineurContainer{
     padding: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 #demineur {
     display: flex;
-    background-color: rgb(255, 255, 255);
-}
-
-#demineur-play{
-    width: 100%;
-    text-align: center;
+    flex-direction: row;
+    justify-content: center;
 }
 
 #grille{

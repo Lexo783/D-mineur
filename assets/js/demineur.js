@@ -64,6 +64,7 @@ class Case {
 var setTime = undefined;
 var timeStart = undefined;
 var started = undefined;
+var game = undefined;
 
 function affichage(time) {
     var time = new Date(Date.now() - timeStart);
@@ -100,14 +101,15 @@ function start() {
         document.getElementById('timer').style.display = 'block';
         document.getElementById('level').style.display = 'block';
         document.getElementById('bombe').style.display = 'block';
-        document.getElementById('btnStart').textContent = "Stop";
-        document.getElementById('title').textContent = difficulty;
+        document.getElementById('size').style.display = 'block';
+        document.getElementById('btnStart').value = "Stop";
+        document.getElementById('level').textContent = difficulty;
         
-        var game = new Game(difficulty);
+        game = new Game(difficulty);
         game.create();
         generateTable(game);
         document.getElementById('bombe').textContent = "Bombes : " + game.numberBombes;
-    
+        document.getElementById('size').textContent = "Taille : " + game.size;
         timeStart = Date.now();
         setTime=setInterval(Chrono, 50);
     }
@@ -116,9 +118,17 @@ function start() {
         document.getElementById('timer').style.display = 'none';
         document.getElementById('level').style.display = 'none';
         document.getElementById('bombe').style.display = 'none';
-        document.getElementById('btnStart').textContent = "Start";
+        document.getElementById('size').style.display = 'none';
+
+        document.getElementById('btnStart').value = "Start";
         clearInterval(setTime);
         setTime = undefined;
+        timeStart = 0;
+        while (document.getElementById('grille').firstChild) {
+            document.getElementById('grille').firstChild.remove();
+        }
+        game = undefined;
+        started = false;
     }
     
 }
@@ -128,6 +138,7 @@ function main(){
     document.getElementById('timer').style.display = 'none';
     document.getElementById('level').style.display = 'none';
     document.getElementById('bombe').style.display = 'none';
+    document.getElementById('size').style.display = 'none';
     started = false;
     timeStart = 0;
 }
