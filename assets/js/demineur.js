@@ -28,6 +28,7 @@ class Game {
             this.lines.push(new Array(this.size));
         }
     }
+
     incremente(x, y)
     {
         for (let i = -1; i < 2; i++)
@@ -71,7 +72,6 @@ class Game {
                 }
             }
         }
-        this.seeMybiutifulLog();
     }
 
     seeMybiutifulLog()
@@ -129,11 +129,24 @@ function generateTable() {
             var td = document.createElement('td');
             var btn = document.createElement('button');
             btn.setAttribute('class', 'case');
+            btn.setAttribute('name', row + ":" + column);
+            btn.addEventListener('click', btnDiscorvering);
+            btn.addEventListener('contextMenu', btnFlagging);
             td.append(btn);
             tr.append(td);
         }
         document.getElementById('grille').append(tr);
     }
+}
+
+function btnDiscorvering() {
+    var row = this.name.split(':')[0];
+    var column = this.name.split(':')[1];
+}
+
+function btnFlagging() {
+    var row = this.name.split(':')[0];
+    var column = this.name.split(':')[1];
 }
 
 function start() {

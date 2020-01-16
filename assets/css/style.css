@@ -103,22 +103,19 @@ main p{
 }
 
 #stats {
-    width: 50%;
-    margin: auto;
-    padding: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    align-self: center;
+    flex-wrap: wrap;
 }
 
 #stats span {
-    display: block;
-    height: 20px;
     color: rgb(206, 6, 43);
     font-family: cursive;
     font-size: xx-large;
+    margin: 20px;
 }
+
 
 #demineurContainer{
     padding: 20px;
