@@ -1,3 +1,6 @@
+jQuery(document).ready(function ($){
+
+
 class Game {
     constructor(difficulty) {
         this.size = 0;
@@ -86,6 +89,8 @@ function generateTable(game) {
             var td = document.createElement('td');
             var btn = document.createElement('button');
             btn.setAttribute('class', 'case');
+            btn.setAttribute('name', row + ":" + column);
+            btn.addEventListener('click', touch);
             td.append(btn);
             tr.append(td);
         }
@@ -133,6 +138,13 @@ function start() {
     
 }
 
+function touch() {
+    var row = this.name.split(':')[0];
+    var column = this.name.split(':')[1];
+    console.log("case:" + row + ":" + column);
+}
+
+
 function main(){
     document.getElementById('btnStart').addEventListener('click', start);
     document.getElementById('timer').style.display = 'none';
@@ -144,3 +156,9 @@ function main(){
 }
 
 main();
+
+$(".case").on("click()",function (e) {
+    this.disabled = true;
+});
+
+});
