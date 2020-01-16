@@ -79,7 +79,7 @@ function Chrono() {
     affichage(new Date(Date.now() - timeStart));
 }
 
-function generateTable(game) {
+function generateTable() {
     for (var row = 0; row < game.size; row++) {
         var tr = document.createElement('tr');
         for (var column = 0; column < game.size; column++) { 
@@ -107,7 +107,7 @@ function start() {
         
         game = new Game(difficulty);
         game.create();
-        generateTable(game);
+        generateTable();
         document.getElementById('bombe').textContent = "Bombes : " + game.numberBombes;
         document.getElementById('size').textContent = "Taille : " + game.size;
         timeStart = Date.now();
