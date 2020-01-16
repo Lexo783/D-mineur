@@ -2,24 +2,25 @@ class Game {
     constructor(difficulty) {
         this.size = 0;
         this.numberBombes = 0;
+        this.numberFlag = 0;
         this.caseDiscovered = 0;
         
     switch (difficulty) {
-        case "Facile":
+        case "easy":
             this.size = 9;
             this.numberBombes = 10;
             break;
-        case "Moyen":
-            this.size = 18;
+        case "medium":
+            this.size = 16;
             this.numberBombes = 40;
             break;
-        case "Difficile":
-            this.size = 40;
+        case "hard":
+            this.size = 22;
             this.numberBombes = 100;
             break;
-        case "Hardcore":
-            this.size = 75;
-            this.numberBombes = 1000;                
+        case "hardcore":
+            this.size = 30;
+            this.numberBombes = 250;                
             break;
         default:
             break;
@@ -76,7 +77,13 @@ class Game {
     }
 
     isFinished(){
-        return this.caseDiscovered === (this.size * this.size) - this.numberBombes;
+        var caseDiscovered = 0;
+        for (var i = 0; i < this.size; i++){
+            for (let j = 0; j < this.size; j++) {
+                caseDiscovered = !this.lines[i][j].hidden ? caseDiscovered + 1 : caseDiscovered; 
+            }
+        }
+        return caseDiscovered === (this.size * this.size) - this.numberBombes;
     }
 
     seeMybiutifulLog()
@@ -117,11 +124,10 @@ var game = null;
 
 function affichage(time) {
     var time = new Date(Date.now() - timeStart);
-    //var h = time.getHours() - 1;
+    var h = time.getHours() - 1;
     var m = time.getMinutes();
     var s = time.getSeconds();
-    //document.getElementById('chronometre').textContent = (h + "").padStart(2, "0") + ":" + (m+ "").padStart(2, "0") + ":" + (s + "").padStart(2, "0");
-    document.getElementById('timer').textContent = (m+ "").padStart(2, "0") + ":" + (s + "").padStart(2, "0");
+    document.getElementById('timer').textContent = h > 0 ? (h + "").padStart(2, "0") : "" + (m + "").padStart(2, "0") + ":" + (s + "").padStart(2, "0");
 }
 
 function Chrono() {
@@ -134,7 +140,6 @@ function generateTable() {
         for (var column = 0; column < game.size; column++) { 
             var td = document.createElement('td');
             var btn = document.createElement('button');
-            btn.value = "1";
             btn.setAttribute('class', 'case');
             btn.setAttribute('id', 'caseNormal');
             btn.setAttribute('name', row + ":" + column);
@@ -148,40 +153,81 @@ function generateTable() {
 }
 
 function btnDiscorvering() {
-    var row = this.name.split(':')[0];
-    var column = this.name.split(':')[1];
-    this.disabled = true;
+    var row = parseInt(this.name.split(':')[0]);
+    var column = parseInt(this.name.split(':')[1]);
     var caseValue = game.lines[row][column].value;
-    game.lines[row][column].hidden = false;
-    this.setAttribute('id', 'case' + caseValue);
+    
     if (caseValue !== 9) {
-        game.caseDiscovered++;
-        console.log("nest pas une bombe => fini: " + game.isFinished());
-        if (game.isFinished()){
-            endGame();
+        if(caseValue !== 0) {
+            revealACase(row, column);
         }
-        // decouverte
+        else {
+            reveal(row, column);
+        }
     }
     else {
         endGame();
     }
+    document.getElementById("flag").textContent = "Drapeau" + (game.numberFlag > 1 ? "x : " : " : ") + game.numberFlag;
+
+    if(game.isFinished()){
+        endGame();
+    }
 }
 
-function reveal() {
-    
+function reveal(row, column) {
+    var casesToReveal = [];
+    for (var i = -1; i < 2; i++) {
+        for (var j = -1; j < 2; j++) {
+            if (i === 0 && j === 0){
+                    revealACase(row, column);
+            }
+            else {
+                if (row + i >= 0 && row + i < game.size && column + j >= 0 && column + j < game.size) {
+                    if (game.lines[row + i][column + j].hidden && game.lines[row + i][column + j].value !== 9) {
+                        if (game.lines[row + i][column + j].value !== 0) {
+                            revealACase(row + i, column + j);
+                        }
+                        else{
+                            casesToReveal.push([row + i, column + j]);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for (var i = 0; i < casesToReveal.length; i++){
+        reveal(casesToReveal[i][0], casesToReveal[i][1]);
+    }
+}
+
+function revealACase(row, column) {
+    game.lines[row][column].hidden = false;
+    if (game.lines[row][column].flagged){
+        game.lines[row][column].flagged = false;
+        game.numberFlag--;
+    }
+    var btn = document.getElementsByClassName('case')[row * game.size + column];
+    btn.disabled = true;
+    btn.setAttribute('id', 'case' + game.lines[row][column].value);
+    game.caseDiscovered++;
 }
 
 function btnFlagging() {
     var row = this.name.split(':')[0];
     var column = this.name.split(':')[1];
-    if( game.lines[row][column].flagged){
+    
+    if (game.lines[row][column].flagged){
         game.lines[row][column].flagged = false;
-        this.setAttribute('id', 'caseFlag');
+        this.setAttribute('id', 'caseNormal');
+        game.numberFlag--;
     }
     else {
         game.lines[row][column].flagged = true;
-        this.setAttribute('id', 'caseNormal');
+        this.setAttribute('id', 'caseFlag');
+        game.numberFlag++;
     }
+    document.getElementById("flag").textContent = "Drapeau" + (game.numberFlag > 1 ? "x : " : " : ") + game.numberFlag;
 }
 
 function start() {
@@ -201,7 +247,7 @@ function start() {
         game = new Game(difficulty);
         game.create();
         generateTable();
-        document.getElementById('level').textContent = difficulty;
+        document.getElementById('flag').textContent = "Drapeau : 0";
         document.getElementById('bombe').textContent = "Bombes : " + game.numberBombes;
         document.getElementById('size').textContent = "Taille : " + game.size;
         timeStart = Date.now();
@@ -227,7 +273,7 @@ function endGame() {
     var btns = document.getElementsByClassName('case');
     for (var row = 0; row < game.size; row++) {
         for (var column = 0; column < game.size; column++) {
-            var btn = btns[(row) * game.size + column];
+            var btn = btns[row * game.size + column];
             btn.disabled = true;
             if (game.lines[row][column].value === 9) {
                 btn.setAttribute('id', 'case9');
