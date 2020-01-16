@@ -2,7 +2,7 @@ class Game {
     constructor(difficulty) {
         this.size = 0;
         this.numberBombes = 0;
-        this.caseDecovered = 0;
+        this.caseDiscovered = 0;
         
     switch (difficulty) {
         case "Facile":
@@ -76,7 +76,7 @@ class Game {
     }
 
     isFinished(){
-        return this.caseDecovered === this.size * this.size - this.numberBombes;
+        return this.caseDiscovered === (this.size * this.size) - this.numberBombes;
     }
 
     seeMybiutifulLog()
@@ -155,7 +155,9 @@ function btnDiscorvering() {
     game.lines[row][column].hidden = false;
     this.setAttribute('id', 'case' + caseValue);
     if (caseValue !== 9) {
-        if (game.isFinished){
+        game.caseDiscovered++;
+        console.log("nest pas une bombe => fini: " + game.isFinished());
+        if (game.isFinished()){
             endGame();
         }
         // decouverte
@@ -213,7 +215,7 @@ function start() {
 
 function endGame() {
     started = false;
-    if(game.isFinished){
+    if(game.isFinished()){
         document.getElementById("resultWin").style.display = "block";
     }
     else{
