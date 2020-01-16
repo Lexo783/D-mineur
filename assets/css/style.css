@@ -3,22 +3,26 @@ body{
     display: flex;
     flex-direction: column;
 }
+
 header{
     background-color: rgb(206, 6, 43);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
+
 footer{
     background-color: rgb(206, 6, 43);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
 }
+
 footer p{
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
 }
+
 h1{
     font-size: 3em;
     font-family: Arial, Helvetica, sans-serif;
@@ -26,6 +30,7 @@ h1{
     color: white;
     text-align: center;
 }
+
 nav{
     margin: 0px;
     padding: 0 10%;
@@ -33,17 +38,20 @@ nav{
     display: flex;
     flex-direction: column;
 }
+
 nav ul{
     margin: 0px;
     padding: 0px;
     display: flex;
     flex-direction: row;
 }
+
 nav ul li{
     list-style-type: none;
     display: flex;
     flex-direction: column;
 }
+
 nav ul li a{
     flex-grow: 1;
     padding: 25px;
@@ -53,15 +61,18 @@ nav ul li a{
     text-transform: uppercase;
     text-decoration: none;
 }
+
 nav ul li a:hover{
     color: #000000;
     background-color: #C8C8C8;
 }
+
 main{
     min-height: 570px;
     display: flex;
     flex-direction: column;
 }
+
 h3{
     font-size: 3em;
     font-family: Arial, Helvetica, sans-serif;
@@ -69,13 +80,14 @@ h3{
     color: rgb(206, 6, 43);
     text-align: center;
 }
+
 section p{
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     color: black
 }
 
-#start{
+#btnStart{
     color: white;
     background: #da3131;
     display: flex;
@@ -86,38 +98,45 @@ section p{
     text-transform: uppercase;
     align-items: center;
 }
-.demineurContainer{
-    margin-right: auto;
-    margin-left: auto;
-    padding-left: 15px;
-    padding-right: 15px;
-    /*width: 515px;
-    height: 281px*/
+
+#stats {
+    width: 50%;
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-self: center;
 }
-#demineur{
-    height: 281px; 
+
+#stats span {
+    display: block;
+    height: 20px;
+    color: rgb(206, 6, 43);
+    font-family: cursive;
+    font-size: xx-large;
+}
+
+#demineurContainer{
+    padding: 20px;
+}
+
+#demineur {
     display: flex;
     background-color: rgb(255, 255, 255);
 }
 
-#stats {
-    width: 50%;
-    margin: 0 auto;
+#demineur-play{
+    width: 100%;
+    text-align: center;
 }
-#bombe, #timer{
+
+#grille{
     display: inline-block;
-    height: 20px;
-    color: green;
-    font-family: Arial, Helvetica, sans-serif;;
-    font-size: xx-large;
+    margin: auto;
 }
-#timer{
-    float:right;
-}
-.unknow{
 
-
-
+.case{
     width: 20px;
     height: 20px;
 
@@ -126,14 +145,5 @@ section p{
     background-position: center center;
     background-size: cover;
     border-collapse: collapse;
-}
-.demineur-play{
-    height: 218px;
-    width: 100%;
-    text-align: center;
-}
-.grille{
-    display: inline-block;
-    margin: 0 auto;
 }
 
