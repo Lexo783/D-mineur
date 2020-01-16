@@ -80,8 +80,9 @@ h3{
     color: rgb(206, 6, 43);
     text-align: center;
 }
+
 main{
-    padding: 0 10%;
+    padding: 10px 10%;
 }
 
 main p{
@@ -102,11 +103,11 @@ main p{
     align-items: center;
 }
 
-#stats {
-    display: flex;
+#stats, #selectLevel {
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap;
+    padding: 20px;
 }
 
 #stats span {
@@ -115,7 +116,6 @@ main p{
     font-size: xx-large;
     margin: 20px;
 }
-
 
 #demineurContainer{
     padding: 20px;
@@ -137,11 +137,62 @@ main p{
 .case{
     width: 20px;
     height: 20px;
-
-    background-image: url('../capture/normal.png');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
     border-collapse: collapse;
 }
 
+#caseNormal{
+    background-image: url('../capture/normal.png');
+}
+
+#case0{
+    background-image: url('../capture/empty.png');
+}
+#case1{
+    background-image: url('../capture/1.png');
+}
+#case2{
+    background-image: url('../capture/2.png');
+}
+#case3{
+    background-image: url('../capture/3.png');
+}
+#case4{
+    background-image: url('../capture/4.png');
+}
+#case5{
+    background-image: url('../capture/5.png');
+}
+#case6{
+    background-image: url('../capture/6.png');
+}
+#case7{
+    background-image: url('../capture/7.png');
+}
+#case8{
+    background-image: url('../capture/8.png');
+}
+#case9{
+    background-image: url('../capture/bomb.png');
+}
+#caseFlag{
+    background-image: url('../capture/flag.png');
+}
+
+#results p{
+	text-decoration: underline;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 3em;
+	display: none;
+	text-align: center;
+}
+
+#resultWin{
+	color: #009655;
+}
+
+#resultLose{
+	color: #D43C1E;
+}

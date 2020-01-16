@@ -2,6 +2,7 @@ class Game {
     constructor(difficulty) {
         this.size = 0;
         this.numberBombes = 0;
+        this.caseDecovered = 0;
         
     switch (difficulty) {
         case "Facile":
@@ -26,24 +27,6 @@ class Game {
         this.lines = [];
         for (var i = 0; i < this.size; i++) {
             this.lines.push(new Array(this.size));
-        }
-    }
-
-    incremente(x, y)
-    {
-        for (let i = -1; i < 2; i++)
-        {
-            for (let j = -1; j < 2; j++)
-            {
-                if(x + j === -1 || y + i === -1 || x + j === this.size || y + i === this.size)
-                {
-                    continue;
-                }
-                if(this.lines[y+i][x+j].value !== 9)
-                {
-                    this.lines[y+i][x+j].value++;
-                }
-            }
         }
     }
 
@@ -74,8 +57,31 @@ class Game {
         }
     }
 
+    incremente(row, column)
+    {
+        for (let i = -1; i < 2; i++)
+        {
+            for (let j = -1; j < 2; j++)
+            {
+                if(column + j === -1 || row + i === -1 || column + j === this.size || row + i === this.size)
+                {
+                    continue;
+                }
+                if(this.lines[row + i][column + j].value !== 9)
+                {
+                    this.lines[row + i][column + j].value++;
+                }
+            }
+        }
+    }
+
+    isFinished(){
+        return this.caseDecovered === this.size * this.size - this.numberBombes;
+    }
+
     seeMybiutifulLog()
     {
+        console.log("New Game :");
         for (let i = 0; i < this.lines.length; i++)
         {
             var t = [];
@@ -104,10 +110,10 @@ class Case {
     }
 }
 
-var setTime = undefined;
-var timeStart = undefined;
-var started = undefined;
-var game = undefined;
+var setTime = null;
+var timeStart = null;
+var started = null;
+var game = null;
 
 function affichage(time) {
     var time = new Date(Date.now() - timeStart);
@@ -128,10 +134,12 @@ function generateTable() {
         for (var column = 0; column < game.size; column++) { 
             var td = document.createElement('td');
             var btn = document.createElement('button');
+            btn.value = "1";
             btn.setAttribute('class', 'case');
+            btn.setAttribute('id', 'caseNormal');
             btn.setAttribute('name', row + ":" + column);
             btn.addEventListener('click', btnDiscorvering);
-            btn.addEventListener('contextMenu', btnFlagging);
+            btn.addEventListener('contextmenu', btnFlagging);
             td.append(btn);
             tr.append(td);
         }
@@ -142,28 +150,56 @@ function generateTable() {
 function btnDiscorvering() {
     var row = this.name.split(':')[0];
     var column = this.name.split(':')[1];
+    this.disabled = true;
+    var caseValue = game.lines[row][column].value;
+    game.lines[row][column].hidden = false;
+    this.setAttribute('id', 'case' + caseValue);
+    if (caseValue !== 9) {
+        if (game.isFinished){
+            endGame();
+        }
+        // decouverte
+    }
+    else {
+        endGame();
+    }
+}
+
+function reveal() {
+    
 }
 
 function btnFlagging() {
     var row = this.name.split(':')[0];
     var column = this.name.split(':')[1];
+    if( game.lines[row][column].flagged){
+        game.lines[row][column].flagged = false;
+        this.setAttribute('id', 'caseFlag');
+    }
+    else {
+        game.lines[row][column].flagged = true;
+        this.setAttribute('id', 'caseNormal');
+    }
 }
 
 function start() {
     if (!started) {
+        reset();
         started = true;
-        var difficulty = document.getElementById('selectorLevel').value;
-        document.getElementById("selectLevel").style.display = "none";
-        document.getElementById('timer').style.display = 'block';
-        document.getElementById('level').style.display = 'block';
-        document.getElementById('bombe').style.display = 'block';
-        document.getElementById('size').style.display = 'block';
         document.getElementById('btnStart').value = "Stop";
-        document.getElementById('level').textContent = difficulty;
+
+        var difficulty = document.getElementById('selectorLevel').value;
+
+        document.getElementById("selectLevel").style.display = "none";
+        document.getElementById('stats').style.display = 'flex';
+        while (document.getElementById('grille').childElementCount > 0) {
+            document.getElementById('grille').firstChild.remove();
+        }
         
         game = new Game(difficulty);
         game.create();
         generateTable();
+        document.getElementById('level').textContent = difficulty;
         document.getElementById('bombe').textContent = "Bombes : " + game.numberBombes;
         document.getElementById('size').textContent = "Taille : " + game.size;
         timeStart = Date.now();
@@ -171,33 +207,47 @@ function start() {
         //game.seeMybiutifulLog();
     }
     else {
-        document.getElementById("selectLevel").style.display = "block";
-        document.getElementById('timer').style.display = 'none';
-        document.getElementById('level').style.display = 'none';
-        document.getElementById('bombe').style.display = 'none';
-        document.getElementById('size').style.display = 'none';
-
-        document.getElementById('btnStart').value = "Start";
-        clearInterval(setTime);
-        setTime = undefined;
-        timeStart = 0;
-        while (document.getElementById('grille').firstChild) {
-            document.getElementById('grille').firstChild.remove();
-        }
-        game = undefined;
-        started = false;
+        endGame();
     }
-    
+}
+
+function endGame() {
+    started = false;
+    if(game.isFinished){
+        document.getElementById("resultWin").style.display = "block";
+    }
+    else{
+        document.getElementById("resultLose").style.display = "block";
+    }
+    document.getElementById("selectLevel").style.display = "flex";
+    document.getElementById('btnStart').value = "Start";
+    clearInterval(setTime);
+    var btns = document.getElementsByClassName('case');
+    for (var row = 0; row < game.size; row++) {
+        for (var column = 0; column < game.size; column++) {
+            var btn = btns[(row) * game.size + column];
+            btn.disabled = true;
+            if (game.lines[row][column].value === 9) {
+                btn.setAttribute('id', 'case9');
+            }
+        }
+    }
+}
+
+function reset(){
+    document.getElementById("selectLevel").style.display = "flex";
+    document.getElementById('stats').style.display = 'none';
+    setTime = undefined;
+    timeStart = 0;
+    game = undefined;
+    started = false;
+    document.getElementById('resultWin').style.display = 'none';
+    document.getElementById('resultLose').style.display = 'none';
 }
 
 function main(){
     document.getElementById('btnStart').addEventListener('click', start);
-    document.getElementById('timer').style.display = 'none';
-    document.getElementById('level').style.display = 'none';
-    document.getElementById('bombe').style.display = 'none';
-    document.getElementById('size').style.display = 'none';
-    started = false;
-    timeStart = 0;
+    reset();
 }
 
 main();

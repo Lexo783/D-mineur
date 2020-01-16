@@ -11,31 +11,32 @@
         </header>
         
         <main>
+            <div id="selectLevel">
+                <select id="selectorLevel" required>
+                    <option value="Facile">Facile</option>
+                    <option value="Moyen">Moyen</option>
+                    <option value="Difficile">Difficile</option>
+                    <option value="Hardcore">Hardcore</option>
+                </select>
+            </div>
             <div id="stats">
                 <span id="size"></span>
                 <span id="bombe"></span>
-                <span id="selectLevel">
-                    <form>
-                        <select id="selectorLevel" required>
-                            <option value="Facile">Facile</option>
-                            <option value="Moyen">Moyen</option>
-                            <option value="Difficile">Difficile</option>
-                            <option value="Hardcore">Hardcore</option>
-                        </select>
-                    </form>
-                </span>
                 <span id="level"></span>
                 <span id="timer"></span>
             </div>
             <div id="demineurContainer">
-                <div id="demineur">
+                <div id="demineur" oncontextmenu="return false">
                     <table >
                         <tbody id="grille">
                         </tbody>
                     </table>
                 </div>
             </div>
-            
+            <div id="results">
+                <p id="resultWin">Gagné !</p>
+                <p id="resultLose">Perdu !</p>
+            </div>
             <div>
                 <input type="button" id="btnStart" value="Start"/>
                 
