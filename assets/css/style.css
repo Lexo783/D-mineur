@@ -25,7 +25,7 @@ footer p{
 
 h1{
     font-size: 3em;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Impact, 'Charcoal', sans-serif;
     font-weight: bold;
     color: white;
     text-align: center;
@@ -75,7 +75,7 @@ main{
 
 h3{
     font-size: 3em;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Comic Sans MS", cursive, sans-serif;
     font-weight: bold;
     color: rgb(206, 6, 43);
     text-align: center;
@@ -134,6 +134,10 @@ main p{
     margin: auto;
 }
 
+button .case{
+    background: none;
+}
+
 .case{
     width: 20px;
     height: 20px;
@@ -182,8 +186,8 @@ main p{
 }
 
 #results p{
-	text-decoration: underline;
-	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-decoration: underline;
+    font-family: Impact, 'Charcoal', sans-serif;
 	font-size: 3em;
 	display: none;
 	text-align: center;

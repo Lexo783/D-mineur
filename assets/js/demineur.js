@@ -156,7 +156,10 @@ function btnDiscorvering() {
     var row = parseInt(this.name.split(':')[0]);
     var column = parseInt(this.name.split(':')[1]);
     var caseValue = game.lines[row][column].value;
-    
+    if (game.lines[row][column].flagged) {
+        return;
+    }
+
     if (caseValue !== 9) {
         if(caseValue !== 0) {
             revealACase(row, column);
@@ -180,7 +183,7 @@ function reveal(row, column) {
     for (var i = -1; i < 2; i++) {
         for (var j = -1; j < 2; j++) {
             if (i === 0 && j === 0){
-                    revealACase(row, column);
+                revealACase(row, column);
             }
             else {
                 if (row + i >= 0 && row + i < game.size && column + j >= 0 && column + j < game.size) {
