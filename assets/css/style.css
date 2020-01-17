@@ -29,6 +29,10 @@ h1{
     font-weight: bold;
     color: white;
     text-align: center;
+    margin-block-end: 0px;
+    margin-block-start: 0px;
+    margin-top: 50PX;
+    margin-bottom: 50px;
 }
 
 nav{
@@ -205,4 +209,26 @@ main p{
 
 #resultLose{
 	color: #D43C1E;
+}
+
+.bomb-cs-go
+{
+    width:50Px;
+    margin-top:40px;
+}
+.row{
+    display: flex;
+    text-align: center;
+}
+.col-1{
+    flex-basis: 25%;
+}
+.col-2{
+    flex-basis: 50%;
+}
+.col-3{
+    flex-basis: 5%;
+}
+.col-4{
+    flex-basis: 40%;
 }
