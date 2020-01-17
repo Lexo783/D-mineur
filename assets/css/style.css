@@ -133,9 +133,10 @@ main p{
     display: inline-block;
     margin: auto;
 }
-
-button .case{
-    background: none;
+    
+#grille tr td button{
+    border: none;
+    background-color: transparent;
 }
 
 .case{
@@ -149,6 +150,11 @@ button .case{
 
 #caseNormal{
     background-image: url('../capture/normal.png');
+}
+
+#caseNormal:hover{
+    background-image: url('../capture/normal.png');
+    transform: rotate(180deg);
 }
 
 #case0{
