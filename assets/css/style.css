@@ -83,6 +83,7 @@ h3{
     font-weight: bold;
     color: rgb(206, 6, 43);
     text-align: center;
+    text-shadow: black 4px 4px 5px;
 }
 
 main{
@@ -107,11 +108,19 @@ main p{
     align-items: center;
 }
 
+#btnStart:hover{
+    box-shadow: 0 0 8px red;
+}
+
 #stats, #selectLevel {
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap;
     padding: 20px;
+}
+
+#selectorLevel:hover{
+    box-shadow: 0 0 8px royalblue;
 }
 
 #stats span {
