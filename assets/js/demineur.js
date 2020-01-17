@@ -122,6 +122,9 @@ var timeStart = null;
 var started = null;
 var game = null;
 
+var winSound = undefined;
+var loseSound = undefined;
+
 function affichage(time) {
     var time = new Date(Date.now() - timeStart);
     var h = time.getHours() - 1;
@@ -266,9 +269,11 @@ function endGame() {
     started = false;
     if(game.isFinished()){
         document.getElementById("resultWin").style.display = "block";
+        winSound.play();
     }
     else{
         document.getElementById("resultLose").style.display = "block";
+        loseSound.play();
     }
     document.getElementById("selectLevel").style.display = "flex";
     document.getElementById('btnStart').value = "Start";
@@ -294,10 +299,17 @@ function reset(){
     started = false;
     document.getElementById('resultWin').style.display = 'none';
     document.getElementById('resultLose').style.display = 'none';
+    loseSound.pause();
+    winSound.pause();
+
 }
 
 function main(){
     document.getElementById('btnStart').addEventListener('click', start);
+    winSound = document.createElement("audio");
+    winSound.src = "assets/sound/winSound.mp3";
+    loseSound = document.createElement("audio");
+    loseSound.src = "assets/sound/loseSound.mp3";
     reset();
 }
 
